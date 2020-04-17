@@ -12,7 +12,7 @@ for itm in arr_1:
     for itm2 in arr_2:
         if itm % itm2 == 0:
             sum += 1
-            if sum == 8:
+            if sum == len(arr_2):
                 res += 1
                 print(itm)
 print(res)
