@@ -16,4 +16,5 @@ for itm in arr1:
     if arr1[i] % 2 == 0:
         arr2.append(i)
     i += 1
+
 print(arr2)
