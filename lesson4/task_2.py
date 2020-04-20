@@ -7,31 +7,66 @@
 # Второй — без использования «Решета Эратосфена».
 
 import cProfile
-
+import timeit
 
 # Вариант без использования "Решета Эратосфена"
-def my_func(number):
-    first_num = 2
-    idx = 1
-    while idx != number:
-        first_num += 1
-        for i in range(2, first_num):
-            if first_num % i == 0:
-                break
-        else:
+# def my_func(number):
+#     first_num = 2
+#     idx = 1
+#     while idx != number:
+#         first_num += 1
+#         for i in range(2, first_num):
+#             if first_num % i == 0:
+#                 break
+#         else:
+#             idx += 1
+#     # print(first_num)
+#     return first_num
+#
+#
+# my_func(57)
+#
+# cProfile.run('my_func(10)') # 0.000
+# cProfile.run('my_func(100)') # 0.002
+# cProfile.run('my_func(1000)') # 0.296
+# cProfile.run('my_func(2000)') # 1.272
+# cProfile.run('my_func(10000)') # 38.246
+
+# Вариант с использованием "Решета Эратосфена"
+# Получилось сделать только так чтобы выводил последнее простое число из введнного диапазона,
+# понимаю, что это не совсем то что требовалось в задании.
+# Также пришлось генерировать новый список,
+# чтобы избавиться от нулей в первом списке и вывести последнее простое число.
+# Очень интересует вопрос:
+# что нужно изменить,
+# чтобы не пришлось создавать новый список, но можно было вывести последнее простое число.
+# И реально ли использовать именно эту идею для реализации алгоритма, требующегося в задании
+# (чтобы при вводе порядкового номера простого числа выводилось нужное простое число),
+# без кординального переписывания кода?
+
+def eratosphens(number):
+    array = [i for i in range(2, number + 1)]
+    # print(array)
+
+    p = 2
+    while p < number:
+        n = p ** 2
+        idx = 0
+        for i in array:
+            if i >= n:
+                n = i
+                # print(n)
+                if i % p == 0:
+                    array[idx] = 0
             idx += 1
-    # print(first_num)
-    return first_num
+        p += 1
+    result_list = [i for i in array if i != 0]
+    return result_list[-1]
 
+# print(eratosphens(1010))
 
-my_func(57)
-
-cProfile.run('my_func(10)') # 0.000
-cProfile.run('my_func(100)') # 0.002
-cProfile.run('my_func(1000)') # 0.296
-cProfile.run('my_func(2000)') # 1.272
-cProfile.run('my_func(10000)') # 38.246
-
-
-
+cProfile.run('eratosphens(100)') # 0.001
+cProfile.run('eratosphens(1000)') # 0.070
+cProfile.run('eratosphens(2000)') # 0.285
+cProfile.run('eratosphens(10000)') # 6.620
 
