@@ -5,6 +5,7 @@
 
 import sys
 
+
 # macOS Catalina 10.15.4, 64-разрядная. Версия интерпретатора - Python 3.7
 
 # Функция подсчета затрачиваемой памяти
@@ -45,8 +46,10 @@ def my_func(number):
     return f'Ваше простое число - {first_num}.\n' \
            f'Сумма памяти переменных - {sum_res - sys.getsizeof(tuple_for_sum)} байт.'
 
+
 print(my_func(10))
 print('*' * 50)
+
 
 # Вариант второй:
 def my_eratosphens(number):
@@ -58,7 +61,7 @@ def my_eratosphens(number):
         tuple_for_sum = (CONST, array, number)
         sum_res = size_func(tuple_for_sum)
         return f'Ваше простое число - {array[number - 1]} .\n' \
-           f'Сумма памяти переменных - {sum_res - sys.getsizeof(tuple_for_sum) + sys.getsizeof(False)} байт.'
+               f'Сумма памяти переменных - {sum_res - sys.getsizeof(tuple_for_sum) + sys.getsizeof(False)} байт.'
 
     p = 2
     while p < number:
@@ -76,8 +79,10 @@ def my_eratosphens(number):
     return f'Ваше простое число - {result_list[number - 1]} .\n' \
            f'Сумма памяти переменных - {sum_res - sys.getsizeof(tuple_for_sum) + sys.getsizeof(False)} байт.'
 
+
 print(my_eratosphens(4))
 print('*' * 50)
+
 
 # Вариант третий:
 def eratosphen_teach(num):
@@ -93,7 +98,6 @@ def eratosphen_teach(num):
 
             count += 1
             if count == num:
-
                 tuple_for_sum = (CONST, array, count, i, item)
                 sum_res = size_func(tuple_for_sum) + for_sum
 
@@ -103,6 +107,7 @@ def eratosphen_teach(num):
 
             for item in range(i ** 2, len(array), i):
                 array[item] = False
+
 
 print(eratosphen_teach(8))
 
